@@ -7,7 +7,7 @@ using namespace geode::prelude;
 class $modify(MyPlayLayer, PlayLayer) {
 
 	struct Fields {
-		unsigned int m_initialRam = 0;
+		int m_initialRam = 0;
 	};
 
 	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
@@ -39,8 +39,8 @@ class $modify(MyPlayLayer, PlayLayer) {
 			PROCESS_MEMORY_COUNTERS_EX pmc;
 			GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
 
-			unsigned int usedMemory = pmc.WorkingSetSize/1048576;
-			unsigned int levelMemory = usedMemory - m_fields->m_initialRam;
+			int usedMemory = pmc.WorkingSetSize/1048576;
+			int levelMemory = usedMemory - m_fields->m_initialRam;
 
 			if(levelMemory > Mod::get()->getSettingValue<int64_t>("ram-limit")){
 				onQuit();
