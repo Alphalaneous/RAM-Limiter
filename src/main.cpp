@@ -21,7 +21,6 @@ class $modify(MyPlayLayer, PlayLayer) {
 
 		PROCESS_MEMORY_COUNTERS_EX pmc;
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-        SIZE_T physMemUsedByMe = pmc.WorkingSetSize;
 
         m_fields->m_initialRam = pmc.WorkingSetSize/1048576;
 
@@ -39,7 +38,6 @@ class $modify(MyPlayLayer, PlayLayer) {
 
 			PROCESS_MEMORY_COUNTERS_EX pmc;
 			GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-			SIZE_T physMemUsedByMe = pmc.WorkingSetSize;
 
 			unsigned int usedMemory = pmc.WorkingSetSize/1048576;
 			unsigned int levelMemory = usedMemory - m_fields->m_initialRam;
