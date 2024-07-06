@@ -6,4 +6,4 @@ Counterintuitive you'd think since GD just became 64 bit on Windows, but some le
 
 With this mod, you can set the limit from 128 MiB to any higher value. 
 
-For example: 1 GiB is 1024 MiB, and by defualt, this is set to a limit of 4 GiB (4096 MiB). 
+For example: 1 GiB is 1024 MiB, and by default, this is set to a limit of 4 GiB (4096 MiB). 

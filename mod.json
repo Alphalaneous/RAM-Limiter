@@ -3,7 +3,7 @@
 	"gd": {
 		"win": "2.206"
 	},
-	"version": "v1.0.0",
+	"version": "v1.0.1",
 	"id": "alphalaneous.ram_limiter",
 	"name": "RAM Limiter",
 	"developer": "Alphalaneous",
