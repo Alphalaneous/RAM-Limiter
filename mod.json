@@ -1,15 +1,15 @@
 {
-	"geode": "4.0.0-alpha.1",
+	"geode": "4.0.0-beta.1",
 	"gd": {
 		"win": "2.2074"
 	},
-	"version": "v1.0.4-alpha.1",
+	"version": "v1.0.4",
 	"id": "alphalaneous.ram_limiter",
 	"name": "RAM Limiter",
 	"developer": "Alphalaneous",
 	"description": "Limits the amount of RAM a level can use.",
 	"links": {
-        "homepage": "https://twitter.com/alphalaneous",
+        "homepage": "https://linktr.ee/Alphalaneous",
         "source": "https://github.com/Alphalaneous/RAM-Limiter",
         "community": "https://discord.gg/Txn2CA5dHF"
     },
