@@ -1,9 +1,9 @@
 {
-	"geode": "4.0.0-beta.1",
+	"geode": "4.2.0",
 	"gd": {
 		"win": "2.2074"
 	},
-	"version": "v1.0.4",
+	"version": "v1.0.5",
 	"id": "alphalaneous.ram_limiter",
 	"name": "RAM Limiter",
 	"developer": "Alphalaneous",
