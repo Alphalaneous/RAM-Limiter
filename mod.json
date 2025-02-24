@@ -3,7 +3,7 @@
 	"gd": {
 		"win": "2.2074"
 	},
-	"version": "v1.0.5",
+	"version": "v1.0.6",
 	"id": "alphalaneous.ram_limiter",
 	"name": "RAM Limiter",
 	"developer": "Alphalaneous",
@@ -31,5 +31,8 @@
 			"min": 128,
             "default": 4096
         }
-	}
+	},
+	"tags": [
+		"utility"
+	]
 }

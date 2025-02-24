@@ -1,3 +1,6 @@
+# 1.0.6
+- Add tags
+
 # 1.0.5
 - Clean up code
 
