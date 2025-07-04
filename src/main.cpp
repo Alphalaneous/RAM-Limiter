@@ -1,6 +1,29 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/PlayLayer.hpp>
-#include "psapi.h"
+
+struct PROCESS_MEMORY_COUNTERS {
+    DWORD cb;
+    DWORD PageFaultCount;
+    SIZE_T PeakWorkingSetSize;
+    SIZE_T WorkingSetSize;
+    SIZE_T QuotaPeakPagedPoolUsage;
+    SIZE_T QuotaPagedPoolUsage;
+    SIZE_T QuotaPeakNonPagedPoolUsage;
+    SIZE_T QuotaNonPagedPoolUsage;
+    SIZE_T PagefileUsage;
+    SIZE_T PeakPagefileUsage;
+};
+
+struct PROCESS_MEMORY_COUNTERS_EX : PROCESS_MEMORY_COUNTERS {
+    SIZE_T PrivateUsage;
+};
+
+typedef BOOL (WINAPI* GetProcessMemoryInfo_t)(HANDLE, PROCESS_MEMORY_COUNTERS*, DWORD);
+static GetProcessMemoryInfo_t pGetProcessMemoryInfo = nullptr;
+
+$execute {
+    pGetProcessMemoryInfo = (GetProcessMemoryInfo_t)GetProcAddress(LoadLibraryA("psapi.dll"), "GetProcessMemoryInfo");
+}
 
 using namespace geode::prelude;
 
@@ -25,7 +48,7 @@ class $modify(MyPlayLayer, PlayLayer) {
             GlobalMemoryStatusEx(&memInfo);
 
             PROCESS_MEMORY_COUNTERS_EX pmc;
-            GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
+            pGetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
 
             m_fields->m_initialRam = pmc.WorkingSetSize/1048576;
             
@@ -41,7 +64,7 @@ class $modify(MyPlayLayer, PlayLayer) {
         GlobalMemoryStatusEx(&memInfo);
 
         PROCESS_MEMORY_COUNTERS_EX pmc;
-        GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
+        pGetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
 
         int usedMemory = pmc.WorkingSetSize/1048576;
         int levelMemory = usedMemory - m_fields->m_initialRam;
